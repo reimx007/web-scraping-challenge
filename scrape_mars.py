@@ -31,11 +31,7 @@ def scrape_info():
     html1 = response1.text
     soup1 = bs(html1, "html.parser")
     news_title = soup1.find_all('div', class_="content_title")[0].text
-    # ===============================================================================
-    # CAN'T GET THE NEWS PARAGRAPH
-    # ===============================================================================
-    # results = soup1.find_all('div', class_="image_and_description_container")[0]
-    # news_p = soup1.find_all('div', class_="article_teaser_body")[0].text
+    news_p = soup1.find('div', class_="rollover_description_inner").text
 
     # SCRAPE THE 2ND SITE using splinter!
     browser = init_browser()
@@ -49,13 +45,12 @@ def scrape_info():
     image_url = "https://www.jpl.nasa.gov" + partial_url
 
     # SCRAPE THE 3RD SITE!  //// unsuccessful /////
-    # response3 = requests.get(url3)
-    # time.sleep(1)
+    response3 = requests.get(url3)
+    time.sleep(1)
     # # Scrape page into Soup
-    # html3 = response1.text
-    # soup3 = bs(html1, "html.parser")
-    # article = soup3.find_all('article')[0]
-    # tweet = article.find('span', {'class': 'css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0'})
+    html3 = response3.text
+    soup3 = bs(html3, "html.parser")
+    tweet = soup3.find_all('p', class_='TweetTextSize')[0].text
 
     # SCRAPE THE 4TH SITE AND GRAB AN HTML TABLE!
     tables = pd.read_html(url4)
@@ -77,9 +72,9 @@ def scrape_info():
     # Store all this wonderful data in a dictionary
     mars_data = {
         "news_title": news_title,
-#         "news_p" : news_p,
+        "news_p" : news_p,
         "image_url": image_url,
-#         "tweet": tweet,
+        "tweet": tweet,
         "html_table": html_table,
         "hemisphere_image_urls": hemisphere_image_urls
     }
@@ -89,4 +84,4 @@ def scrape_info():
 
     # Return results
     return mars_data
-print("runs through successfully")
+# print("runs through successfully")

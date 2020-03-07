@@ -17,7 +17,7 @@ def home():
     mars_db_data = mongo.db.collection.find_one()
 
     # Return template and data
-    return render_template("index_n.html", mars=mars_db_data)
+    return render_template("index.html", mars=mars_db_data)
 
 
 # Route that will trigger the scrape function
