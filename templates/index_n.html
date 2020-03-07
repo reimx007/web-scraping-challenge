@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Polooza</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <!-- Container -->
+  <div class="container-fluid">
+    <!-- jumbotron -->
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars.</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <!-- start of data feeds -->
+    <!-- first row -->
+    <div class="row">
+      <div class="col-md-9">
+        <h2>Latest Mars News</h2>
+        <h4>{{ mars.news_title }}</h4>
+        <p>Some missing text....{{mars.news_p}}</p>
+      </div>
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h4 class="card-title">Current Weather on Mars</h4>
+            <p class="card-text">A tweet that I can't grab {{mars.tweet}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- second row -->
+    <div class="row">
+      <div class="col-md-9">
+        <h2>Featured Mars Image</h2>
+        <img src="{{ mars.image_url }}" alt="JPL Image">
+      </div>
+      <div class="col-md-3">
+        <h4 class="card-title">Mars Facts</h4>
+        <table>
+          <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.mars.html_table }}</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+        {{mars.html_table}}
+      </div>
+    </div>
+    <!-- Block of pictures -->
+    <!--header-->
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Mars Hemispheres</h2>
+      </div>
+    </div>
+    <!--first row-->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-deck">
+          <div class="card">
+            <img src="{{ mars.hemisphere_image_urls[0]["img_url"]}}" class="card-img" alt="Valles Marineris" height="500" width="500">
+            <div class="card-body">
+              <h4 class="card-title">Valles Marineris Hemisphere Enhanced</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck">
+        <div class="card">
+          <img src="{{ mars.hemisphere_image_urls[1]["img_url"]}}" class="card-img" alt="Cerberus" height="500" width="500">
+          <div class="card-body">
+            <h4 class="card-title">Cerberus Hemisphere Enhanced</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--second row-->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card-deck">
+          <div class="card">
+            <img src="{{ mars.hemisphere_image_urls[2]["img_url"]}}" class="card-img" alt="Schiaparelli" height="500" width="500">
+            <div class="card-body">
+              <h4 class="card-title">Schiaparelli Hemisphere Enhanced</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-deck">
+        <div class="card">
+          <img src="{{ mars.hemisphere_image_urls[3]["img_url"]}}" class="card-img" alt="Syrtis Major" height="500" width="500">
+          <div class="card-body">
+            <h4 class="card-title">Syrtis Major Hemisphere Enhanced</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
